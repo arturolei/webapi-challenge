@@ -71,6 +71,7 @@ async function validateActionId (req, res, next) {
 };
 
 async function validateAction (req, res, next) {
+    //test if project_id is for a real project.
     try {
         const project = await projectModel.get(req.body.project_id);
         if (!project) {
