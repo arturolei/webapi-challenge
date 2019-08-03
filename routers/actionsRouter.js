@@ -12,7 +12,7 @@ router.post('/', validateAction, async (req, res) => {
         const newAction = await actionModel.insert(req.body);
         res.status(201).json(newAction);
     } catch (err) {
-        res.status(500).json({message:err});
+        res.status(500).json({message:"Error posting action",errorMessage:err});
     }
 });
 
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         const actions = await actionModel.get();
         res.status(200).json(actions);
     } catch (err) {
-        res.status(500).json({message:"Error retrieving actions"});
+        res.status(500).json({message:"Error retrieving/getting actions"});
     }
 });
 
@@ -35,7 +35,7 @@ router.get('/:id', validateActionId, async (req, res) => {
 router.put('/:id',validateActionId, validateAction, async (req, res) => {
     try {
         const updatedAction = await actionModel.update(req.params.id, req.body);
-        res.status(200).json({message: 'Post was successfully updated', updatedAction});
+        res.status(200).json({message: 'Action was successfully updated', updatedAction});
     } catch (error) {
         res.status(500).json({message:err});
     }
